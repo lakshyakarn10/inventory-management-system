@@ -1,9 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./styles.css";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
-
-fetch(`${API_BASE_URL}/items`)
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 async function getItems() {
   const response = await fetch(`${API_BASE_URL}/items`);

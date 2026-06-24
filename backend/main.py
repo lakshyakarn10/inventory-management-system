@@ -9,8 +9,13 @@ app=FastAPI()
 Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://inventory-management-system-fronten-tau.vercel.app",
-                   "https://inventory-management-system.lakshyakarn.com.np"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "https://inventory-management-system-fronten-tau.vercel.app",
+        "https://inventory-management-system.lakshyakarn.com.np",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
