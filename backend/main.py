@@ -1,15 +1,16 @@
 from fastapi import FastAPI,HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from schemas import Item
-from models import ItemResponse, ItemCreate
-from database import Base, engine, get_db
+from backend.schemas import Item
+from backend.models import ItemResponse, ItemCreate
+from backend.database import Base, engine, get_db
 from sqlalchemy.orm import Session
 app=FastAPI()
 
 Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["https://inventory-management-system-fronten-tau.vercel.app",
+                   "https://inventory-management-system.lakshyakarn.com.np"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
