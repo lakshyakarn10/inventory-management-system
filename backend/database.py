@@ -1,8 +1,24 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine,text
 from sqlalchemy.orm import sessionmaker, declarative_base
+import os
+from dotenv import load_dotenv
 
-db_url="postgresql://postgres.hprqryvocandmqrkbxbf:eSW65Rcx0EkZmOOn@aws-1-ap-south-1.pooler.supabase.com:6543/postgres"
-engine=create_engine(db_url)
+
+load_dotenv()
+
+DATABASE_URL = os.environ["DATABASE_URL"]
+
+print("DATABASE_URL =", repr(DATABASE_URL))
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True
+)
+
+with engine.connect() as conn:
+    print("Connected!")
+    print(conn.execute(text("SELECT 1")).scalar())
+
 
 SessionLocal= sessionmaker(
     autocommit=False,
@@ -17,3 +33,5 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
