@@ -27,7 +27,7 @@ frontend/.env
 
 node_modules/
 dist/
-
+frontend/node_modules/
 # Logs
 npm-debug.log*
 yarn-debug.log*
